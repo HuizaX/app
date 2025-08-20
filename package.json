@@ -1,0 +1,22 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Mi primera app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuizaX/Mi_organizador.git"
+  },
+  "author": "ignacio huiza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HuizaX/Mi_organizador/issues"
+  },
+  "homepage": "https://github.com/HuizaX/Mi_organizador#readme",
+  "devDependencies": {
+    "electron": "^37.3.1"
+  }
+}
