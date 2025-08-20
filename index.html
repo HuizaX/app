@@ -1,74 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>App de Notas con Perfil</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #perfil-section, #notas-section {
-      max-width: 400px;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    input, button {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-    }
-    #perfil-preview {
-      text-align: center;
-    }
-    #perfil-preview img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-top: 10px;
-      display: none;
-    }
-    .nota {
-      background: #f1f1f1;
-      padding: 8px;
-      margin: 5px 0;
-      border-radius: 5px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Mi App con Perfil</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Sección Perfil -->
-  <div id="perfil-section">
-    <h2>Crear Perfil</h2>
-    <form id="perfil-form">
-      <input type="text" id="nombre" placeholder="Nombre" required />
-      <input type="text" id="apellido" placeholder="Apellido" required />
+  <!-- Pantalla de perfil -->
+  <div id="profile-screen" class="screen hidden">
+    <h1>Crear Perfil</h1>
+    <form id="profile-form">
+      <input type="text" id="firstName" placeholder="Nombre" required />
+      <input type="text" id="lastName" placeholder="Apellido" required />
       <input type="text" id="alias" placeholder="Alias" required />
-      <input type="file" id="foto" accept="image/*" />
-      <div id="perfil-preview">
-        <img id="preview-img" alt="Foto de perfil">
-      </div>
-      <button type="submit">Crear Perfil</button>
+      <input type="file" id="avatar" accept="image/*" />
+      <button type="submit">Guardar perfil</button>
     </form>
   </div>
 
-  <!-- Sección Notas -->
-  <div id="notas-section" style="display:none;">
-    <h2>Agregar Notas</h2>
-    <div id="perfil-info"></div>
+  <!-- App principal -->
+  <div class="app hidden" id="main-app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <header class="profile">
+        <div class="avatar" id="user-avatar"></div>
+        <div class="who">
+          <div class="name" id="user-name">Usuario</div>
+          <div class="role" id="user-alias">Alias</div>
+        </div>
+        <button class="icon-btn" aria-label="notificaciones">🔔</button>
+      </header>
 
-    <div id="notas"></div>
-    <input type="text" id="nuevaNota" placeholder="Escribe una nota">
-    <button id="agregarNota">Agregar Nota</button>
+      <nav class="menu">
+        <button class="active">Hoy</button>
+        <button>Próximos</button>
+        <button>Completados</button>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="main-header">
+        <h1>Mis tareas</h1>
+        <button id="add-task-btn">＋</button>
+      </header>
+      <ul id="task-list"></ul>
+    </main>
   </div>
 
-  <script src="renderer.js"></script>
+  <!-- Template de tareas -->
+  <template id="task-item">
+    <li class="task">
+      <input type="checkbox" />
+      <span class="task-text"></span>
+    </li>
+  </template>
+
+  <script src="./renderer.js"></script>
 </body>
 </html>
