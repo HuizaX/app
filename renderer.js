@@ -1,15 +1,41 @@
-const input = document.getElementById("task-input");
-const addBtn = document.getElementById("add-btn");
-const taskList = document.getElementById("task-list");
+document.addEventListener("DOMContentLoaded", () => {
+  const perfilSection = document.getElementById("perfil-section");
+  const notasSection = document.getElementById("notas-section");
 
-addBtn.addEventListener("click", () => {
-  if (input.value.trim() !== "") {
-    const li = document.createElement("li");
-    li.textContent = input.value;
+  const perfilGuardado = localStorage.getItem("perfilUsuario");
 
-    li.addEventListener("click", () => li.classList.toggle("done"));
+  if (perfilGuardado) {
+    // Si ya hay perfil, mostrar notas directamente
+    mostrarNotas();
+  } else {
+    // Si no hay perfil, mostrar formulario
+    perfilSection.style.display = "block";
+    notasSection.style.display = "none";
+  }
 
-    taskList.appendChild(li);
-    input.value = "";
+  // Guardar perfil al enviar formulario
+  document.getElementById("perfil-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const alias = document.getElementById("alias").value;
+    const foto = document.getElementById("foto").files[0];
+
+    let fotoURL = "";
+    if (foto) {
+      fotoURL = URL.createObjectURL(foto);
+    }
+
+    const perfil = { nombre, apellido, alias, fotoURL };
+    localStorage.setItem("perfilUsuario", JSON.stringify(perfil));
+
+    mostrarNotas();
+  });
+
+  // Mostrar la sección de notas
+  function mostrarNotas() {
+    perfilSection.style.display = "none";
+    notasSection.style.display = "block";
   }
 });

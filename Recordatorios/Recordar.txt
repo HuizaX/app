@@ -1,0 +1,4 @@
+npm install
+siempre para iniciar el proyecto desde otro lugar
+npm start
+para iniciar 
